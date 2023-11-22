@@ -10,6 +10,7 @@ import com.mjc.school.service.dto.NewsDtoResponse;
 import com.mjc.school.service.exceptions.NotFoundException;
 import com.mjc.school.service.mapper.CustomMapper;
 import com.mjc.school.service.validator.Validator;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -21,7 +22,9 @@ import static com.mjc.school.service.validator.Validator.getValidator;
 
 @Service
 public class NewsService implements BaseService<NewsDtoRequest, NewsDtoResponse, Long> {
+    @Qualifier("newsRepository")
     private final BaseRepository<NewsModel, Long> newsRepository;
+    @Qualifier("newsValidator")
     private final Validator validator;
     private CustomMapper mapper = CustomMapper.INSTANCE;
 

@@ -12,7 +12,7 @@ import java.util.List;
 
 @Controller
 public class NewsController implements BaseController<NewsDtoRequest, NewsDtoResponse, Long> {
-
+    @Autowired
     private final BaseService<NewsDtoRequest, NewsDtoResponse, Long> newsService;
 
     public NewsController() {

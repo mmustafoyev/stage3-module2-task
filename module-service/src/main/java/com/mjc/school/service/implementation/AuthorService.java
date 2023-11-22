@@ -10,6 +10,8 @@ import com.mjc.school.service.dto.AuthorDtoResponse;
 import com.mjc.school.service.exceptions.NotFoundException;
 import com.mjc.school.service.mapper.CustomMapper;
 import com.mjc.school.service.validator.Validator;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -18,7 +20,9 @@ import java.util.List;
 import static com.mjc.school.service.exceptions.ErrorCode.AUTHOR_ID_DOES_NOT_EXIST;
 
 public class AuthorService implements BaseService<AuthorDtoRequest, AuthorDtoResponse, Long> {
+    @Qualifier("authorRepository")
     private final BaseRepository<AuthorModel, Long> authorRepository;
+    @Qualifier("authorValidator")
     private final Validator validator;
     private final CustomMapper mapper = CustomMapper.INSTANCE;
 

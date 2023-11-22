@@ -4,6 +4,7 @@ import com.mjc.school.repository.BaseRepository;
 import com.mjc.school.repository.model.AuthorModel;
 import com.mjc.school.repository.model.NewsModel;
 import com.mjc.school.repository.utils.DataSource;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import java.util.Comparator;
@@ -13,6 +14,7 @@ import java.util.Optional;
 @Repository
 public class NewsRepository implements BaseRepository<NewsModel, Long> {
 
+    @Qualifier("dataSource")
     private final DataSource dataSource;
 
     public NewsRepository() {
