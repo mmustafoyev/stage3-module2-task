@@ -2,18 +2,20 @@ import com.mjc.school.controller.implementation.AuthorController;
 import com.mjc.school.controller.implementation.NewsController;
 import com.mjc.school.service.dto.AuthorDtoRequest;
 import com.mjc.school.service.dto.NewsDtoRequest;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.Scanner;
 
-@Configuration
-@ComponentScan("com.mjc.school")
+//@Configuration
+//@ComponentScan("com.mjc.school")
 public class MainApplication {
     public static void main(String[] args) {
+        var context = new AnnotationConfigApplicationContext("com.mjc.school");
         Scanner sc = new Scanner(System.in);
-        NewsController newsController = new NewsController();
-        AuthorController authorController = new AuthorController();
+        NewsController newsController = context.getBean("newsController",NewsController.class);
+        AuthorController authorController = context.getBean("authorController", AuthorController.class);
         boolean status = true;
         while (status) {
             System.out.println("click for performing \n" +

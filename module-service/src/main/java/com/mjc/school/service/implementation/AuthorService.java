@@ -2,7 +2,7 @@ package com.mjc.school.service.implementation;
 
 
 import com.mjc.school.repository.BaseRepository;
-import com.mjc.school.repository.factory.RepositoryFactory;
+//import com.mjc.school.repository.factory.RepositoryFactory;
 import com.mjc.school.repository.model.AuthorModel;
 import com.mjc.school.service.BaseService;
 import com.mjc.school.service.dto.AuthorDtoRequest;
@@ -12,13 +12,14 @@ import com.mjc.school.service.mapper.CustomMapper;
 import com.mjc.school.service.validator.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import static com.mjc.school.service.exceptions.ErrorCode.AUTHOR_ID_DOES_NOT_EXIST;
-
+@Service
 public class AuthorService implements BaseService<AuthorDtoRequest, AuthorDtoResponse, Long> {
     @Qualifier("authorRepository")
     private final BaseRepository<AuthorModel, Long> authorRepository;
@@ -26,9 +27,11 @@ public class AuthorService implements BaseService<AuthorDtoRequest, AuthorDtoRes
     private final Validator validator;
     private final CustomMapper mapper = CustomMapper.INSTANCE;
 
-    public AuthorService() {
-        this.validator = Validator.getValidator();
-        this.authorRepository = RepositoryFactory.getInstance().getAuthorsRepository();
+    public AuthorService(BaseRepository<AuthorModel, Long> authorRepository, Validator authorValidator) {
+        validator = authorValidator;
+        this.authorRepository = authorRepository;
+//        this.validator = Validator.getValidator();
+//        this.authorRepository = RepositoryFactory.getInstance().getAuthorsRepository();
     }
 
     @Override

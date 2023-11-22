@@ -1,7 +1,8 @@
 package com.mjc.school.service.implementation;
 
 import com.mjc.school.repository.BaseRepository;
-import com.mjc.school.repository.factory.RepositoryFactory;
+//import com.mjc.school.repository.factory.RepositoryFactory;
+import com.mjc.school.repository.implementation.NewsRepository;
 import com.mjc.school.repository.model.NewsModel;
 import com.mjc.school.service.BaseService;
 
@@ -28,9 +29,11 @@ public class NewsService implements BaseService<NewsDtoRequest, NewsDtoResponse,
     private final Validator validator;
     private CustomMapper mapper = CustomMapper.INSTANCE;
 
-    public NewsService() {
-        this.validator = getValidator();
-        this.newsRepository = RepositoryFactory.getInstance().getNewsRepository();
+    public NewsService(NewsRepository newsRepository, Validator newsValidator) {
+        this.newsRepository = newsRepository;
+        validator = newsValidator;
+//        this.validator = getValidator();
+//        this.newsRepository = RepositoryFactory.getInstance().getNewsRepository();
 
     }
 

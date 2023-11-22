@@ -17,8 +17,9 @@ public class NewsRepository implements BaseRepository<NewsModel, Long> {
     @Qualifier("dataSource")
     private final DataSource dataSource;
 
-    public NewsRepository() {
-        dataSource = DataSource.getInstance();
+    public NewsRepository(DataSource dataSource) {
+        this.dataSource = dataSource;
+//        dataSource = DataSource.getInstance();
     }
 
     @Override
