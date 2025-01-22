@@ -1,5 +1,6 @@
 package com.mjc.school.repository.utils;
 
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,7 +25,7 @@ public class Utils {
             BufferedReader reader = new BufferedReader(streamReader);
             int desiredLine = rn.nextInt(lines);
             int lineCtr = 0;
-            while ((result = reader.readLine()) != null){
+            while ((result = BoundedLineReader.readLine(reader, 5_000_000)) != null){
                 if (desiredLine == lineCtr)
                     break;
                 lineCtr++;
