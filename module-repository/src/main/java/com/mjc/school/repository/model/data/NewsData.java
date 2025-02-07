@@ -2,6 +2,7 @@ package com.mjc.school.repository.model.data;
 
 import com.mjc.school.repository.model.AuthorModel;
 import com.mjc.school.repository.model.NewsModel;
+import java.security.SecureRandom;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ public class NewsData {
     }
     private void init(List<AuthorModel> authorModelList) {
         newsList = new ArrayList<>();
-        Random r = new Random();
+        Random r = new SecureRandom();
         for (long i = 1; i < 30; i++) {
             LocalDateTime date = getRandomDate();
             newsList.add(
