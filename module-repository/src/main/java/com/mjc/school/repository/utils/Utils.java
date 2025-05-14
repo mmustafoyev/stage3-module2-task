@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.security.SecureRandom;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -15,7 +16,7 @@ public class Utils {
 
     public static String getRandomContentByFilePath(String fileName) {
         String result;
-        Random rn = new Random();
+        Random rn = new SecureRandom();
         int lines = 30;
         try{
             ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
@@ -38,7 +39,7 @@ public class Utils {
 
 
     public static LocalDateTime getRandomDate(){
-        Random r = new Random();
+        Random r = new SecureRandom();
         int endDay = 30;
         LocalDate day =LocalDate.now().plusDays(r.nextInt(endDay));
         int hour = r.nextInt(24);
